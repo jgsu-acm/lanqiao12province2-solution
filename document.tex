@@ -14,7 +14,9 @@
 \end{frame}
 
 \begin{frame}{求余}{题解}
-
+    送分题
+    
+    答案：$1$
 \end{frame}
 
 \begin{frame}{双阶乘}{题面}
@@ -32,6 +34,9 @@
 \end{frame}
 
 \begin{frame}{双阶乘}{题解}
+    发现我们只需要维护最后 $5$ 位即可，于是一个 for 搞定，边乘边对 ${10}^5$ 取模
+
+    答案：$59375$
 \end{frame}
 
 \begin{frame}{格点}{题面}
@@ -43,6 +48,9 @@
 \end{frame}
 
 \begin{frame}{格点}{题解}
+    两重 for 遍历 $x,y$ 值然后加一个判断计数即可
+
+    答案：$15698$
 \end{frame}
 
 \begin{frame}{整数分解}{题面}
@@ -54,6 +62,26 @@
 \end{frame}
 
 \begin{frame}{整数分解}{题解}
+    注意到所求为方案数，求方案数常见两种方法：组合数学或动态规划
+
+    本题两种方法均可
+
+    \begin{enumerate}
+        \item 组合数学
+
+              显然题目即为在 $2021$ 个 $1$ 的 $2020$ 个空隙中插入 $4$ 个隔板的方案数
+
+              故答案为：$\binom{2020}{4}=691677274345$
+        \item 动态规划
+              \begin{itemize}
+                  \item 状态设计：$dp[i][j]$ 表示 $i$ 分成 $j$ 个正整数之和的方案数
+                  \item 初始状态：$dp[i][1] = 1$
+                  \item 转移方程：$dp[i][j] = \sum_{k=1}^{i-1} dp[k][j-1]$
+                  \item 所求结果：$dp[2021][5] = 691677274345$
+              \end{itemize}
+    \end{enumerate}
+
+    答案：$691677274345$
 \end{frame}
 
 \begin{frame}{城邦}{题面}
@@ -71,6 +99,9 @@
 \end{frame}
 
 \begin{frame}{城邦}{题解}
+    显然最小生成树裸题，下一道
+
+    答案：$4046$
 \end{frame}
 
 \begin{frame}{游戏}{题面}
@@ -88,6 +119,20 @@
 \end{frame}
 
 \begin{frame}{游戏}{题解}
+    又是求方案数，发现这回不能用组合数学了，于是思路转向 DP
+
+    \begin{itemize}
+        \item 状态设计：$dp[i]$ 表示 $n=i$ 时的方案数
+        \item 初始状态：$dp[1] = 1$
+        \item 转移方程：$dp[i] = \sum_{d|i} dp[d]$
+        \item 所求结果：$dp[n]$
+    \end{itemize}
+
+    发现递推貌似不太行，找一个数的约数所花时间显然接受不了。于是我们采用刷表法，用前向状态去更新后继状态。过程类似埃氏筛
+
+    注意过程中会出现很大的数，请用 Python 来写
+
+    答案：$1352184317599$
 \end{frame}
 
 \section{程序设计题}
