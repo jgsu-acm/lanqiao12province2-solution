@@ -82,7 +82,7 @@
               \begin{itemize}
                   \item 状态设计：$dp[i][j]$ 表示 $i$ 分成 $j$ 个正整数之和的方案数
                   \item 初始状态：$dp[i][1] = 1$
-                  \item 转移方程：$dp[i][j] = \sum_{k=1}^{i-1} dp[k][j-1]$
+                  \item 转移方程：$$dp[i][j] = \sum_{k=1}^{i-1} dp[k][j-1]$$
                   \item 所求结果：$dp[2021][5] = 691677274345$
               \end{itemize}
     \end{enumerate}
@@ -134,7 +134,7 @@
     \begin{itemize}
         \item 状态设计：$dp[i]$ 表示 $n=i$ 时的方案数
         \item 初始状态：$dp[1] = 1$
-        \item 转移方程：$dp[i] = \sum_{d|i} dp[d]$
+        \item 转移方程：$$dp[i] = \sum_{d|i} dp[d]$$
         \item 所求结果：$dp[n]$
     \end{itemize}
 
@@ -225,7 +225,7 @@
     \begin{itemize}
         \item 状态设计：$dp[i][p][q][j]$ 代表当前放到第 $i$ 行，放法为 $p$，上一行放法为 $q$，已经放了 $j$ 个马的方案数
         \item 初始状态：$dp[1][?][0][popcount(?)] = 1$
-        \item 转移方程：$dp[i][p][q][j] = \sum_a dp[i-1][q][a][j-popcount(a)]$，$a$ 为与 $p$ 不冲突的放法
+        \item 转移方程：$$dp[i][p][q][j] = \sum_{a(not\ conflict\ with\ p)} dp[i-1][q][a][j-popcount(a)]$$
         \item 所求结果：$\sum dp[m][?][?][k]$
     \end{itemize}
 
