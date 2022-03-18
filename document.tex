@@ -1,4 +1,7 @@
 \documentclass{pptt}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
 
 \title{第十二届蓝桥杯省赛第二场题解}
 \author{ACM算法与微应用开发实验室 \and AgOH}
@@ -287,11 +290,19 @@
         \begin{cases}
             S_2 = 4 & (3,1) \\
             \begin{aligned}
-                S_{len} & = \left[ 3 \cdot 2^{len-2} + \sum_{i=0}^{len-2} 2^{i} \right] + \left[ (len-2)(3 \cdot 2^{len-2}) + S_{len-1} \right] \\
+                S_{len} & = \tikzmarknode{a}{\colorbox{red!20}{$3 \cdot 2^{len-2} + \sum_{i=0}^{len-2} 2^{i}$}} + \tikzmarknode{b}{\colorbox{blue!20}{$(len-2)(3 \cdot 2^{len-2}) + S_{len-1}$}} \\
+                        & = S_{len-1} + 2^{len-2}(3len-3) + 2^{len-1} - 1 \\
                         & = 2^{len-1}(3len-4) - len + 2
             \end{aligned}
         \end{cases}
     $$
+
+    \begin{tikzpicture}[overlay,remember picture,>=stealth,nodes={align=left,inner ysep=1pt},<-]
+        \path (a.north) ++ (0,1em) node[anchor=south west,color=red!67] (ca){\scriptsize 若 $3$ 倍出现在第一项和第二项之间};
+        \draw [color=red](a.north) |- ([xshift=-0.3ex,color=red]ca.south east);
+        \path (b.south) ++ (0,-1em) node[anchor=north west,color=blue!67] (cb){\scriptsize 若 $3$ 倍出现在第二项之后};
+        \draw [color=blue](b.south) |- ([xshift=-0.3ex,color=blue]cb.south east);
+    \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
