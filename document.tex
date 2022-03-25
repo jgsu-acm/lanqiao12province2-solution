@@ -332,7 +332,7 @@
         \end{array}
     $$
 
-    当然，也可以推出此递推式的通项公式 $S_{len}=2^{len-1}(3len-4) - len + 2$ 来 $O(1)$ 出结果
+    当然，也可以使用此递推式的通项公式 $S_{len}=2^{len-1}(3len-4) - len + 2$ 直接算出结果
 \end{frame}
 
 \begin{frame}
@@ -342,7 +342,9 @@
 
     为什么是 $\cfrac{A_n^n}{A_{len}^{len}}$ 呢？$1$ 至 $n$ 的所有排列共有 $A_n^n$ 个，而其中“最长完美子序列”的相对位置是不变的，所以除掉“最长完美子序列”的排列数 $A_{len}^{len}$
 
-    注意到出现了有理数取余，需要预处理阶乘及其逆元 $\left[ \cfrac{n!}{len!} \equiv n! \times (len!)^{-1}\pmod p \right]$。数据规模 $n \leq {10}^6$ 不是很大，采用 $O(n)$ 或者 $O(n\log{n})$ 求逆元都可以。若采用 $O(n\log{n})$ 求逆元则总时间复杂度为 $O(n\log{n}+T)$
+    注意到出现了有理数取余，需要预处理阶乘及其逆元 $\left[ \cfrac{n!}{len!} \equiv n! \times (len!)^{-1}\pmod p \right]$。数据规模 $n \leq {10}^6$ 不是很大，采用 $O(n+\log{p})$ 或者 $O(n\log{n})$ 求逆元都可以。
+    
+    若采用 $O(n\log{n})$ 求逆元则总时间复杂度为 $O(n\log{n}+T)$；若采用 $O(n+\log{p})$ 求逆元则总时间复杂度为 $O(n+\log{p}+T)$
 \end{frame}
 
 \end{document}
