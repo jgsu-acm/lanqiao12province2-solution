@@ -144,7 +144,7 @@
     又是求方案数，发现这回不能用组合数学了，于是思路转向 DP
 
     \begin{itemize}
-        \item 状态设计：$dp[i]$ 表示 $n=i$ 时的方案数
+        \item 状态设计：$dp[i]$ 表示从 $i$ 开始写的方案数
         \item 初始状态：$dp[1] = 1$
         \item 转移方程：$$dp[i] = \sum_{d|i} dp[d]$$
         \item 所求结果：$$\sum_{i=1}^{n} dp[i]$$
