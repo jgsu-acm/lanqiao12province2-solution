@@ -226,14 +226,14 @@
 \end{frame}
 
 \begin{frame}{题解}
-    发现此题为 \texttt{[SCOI2005] 互不侵犯} 的加强版。把王换成马，即会跟上两行有关系罢了
+    发现此题即 \texttt{[SCOI2005] 互不侵犯} 的加强版。把王换成马，即会跟上两行有关系罢了
 
     状压 DP，把每行棋子放法用 01 串来表示，放了马为 1，没放为 0：
 
     \begin{itemize}
         \item 状态设计：$dp[i][p][q][j]$ 代表当前放到第 $i$ 行，放法为 $p$，上一行放法为 $q$，已经放了 $j$ 个马的方案数
-        \item 初始状态：$dp[1][p][0][popcount(p)] = 1~,p \in [0, 2^n-1]$ {\scriptsize （同一行的马不会互相攻击所以可以随便放）}
-        \item 转移方程：$$dp[i][p][q][j] = \sum_{a} dp[i-1][q][a][j-popcount(p)]~,j \in [popcount(p), k],~(q,p),(a,p) \text{不冲突}$$
+        \item 初始状态：$dp[1][p][0][popcount(p)] = 1,p \in [0, 2^n-1]$ {\scriptsize （同一行的马不会互相攻击所以可以随便放）}
+        \item 转移方程：$$dp[i][p][q][j] = \sum_{a} dp[i-1][q][a][j-popcount(p)],j \in [popcount(p), k],(q,p) \And (a,p) \text{不冲突}$$
         \item 所求结果：$$\sum_{p=0}^{2^n-1} \sum_{q=0}^{2^n-1} dp[m][p][q][k]$$
     \end{itemize}
 
